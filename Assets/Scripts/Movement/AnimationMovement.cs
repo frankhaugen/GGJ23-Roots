@@ -6,26 +6,55 @@ public class AnimationMovement : MonoBehaviour
 {
     public Sprite[] animationSprites;
     private SpriteRenderer spriteRenderer;
-    private int currentSprite = 0;
-    private float animationFrames=0.25f;
-    private float timer = 0f;  
 
 
-    // Start is called before the first frame update
-    void Start()
+    public Sprite idle;
+    //private int currentSprite = 0;
+    private float animationTime=0.25f;
+    private float animationFrames;
+
+    public bool isIdle = true;
+
+
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>(); //get reference to the sprite renderer component
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable() {
+
+        spriteRenderer.enabled = true;
+
+    }
+
+    private void OnDisable() {
+        spriteRenderer.enabled = false;
+        
+    }
+    private void Start()
     {
-        timer +=Time.deltaTime; 
-        if (timer >= animationFrames)
+        InvokeRepeating(nameof(UpdateNextSprite), 0, animationTime);
+
+    }
+
+    //update the sprite renderer with the next sprite in the array
+    void NextFrame()
+    {
+        animationFrames ++;
+        if (animationFrames >= animationSprites.Length)
         {
-            currentSprite = (currentSprite + 1) % animationSprites.Length; //next sprite in the array 
-            spriteRenderer.sprite = animationSprites[currentSprite]; //update sprite renderer with new sprite
-            timer = 0; //reset timer
+            animationFrames = 0;
+        }
+        if (isIdle)
+        {
+            spriteRenderer.sprite = idle;
+        }
+        else
+        {
+            spriteRenderer.sprite = animationSprites[animationFrames];
         }
     }
+
+    
+    
 }
