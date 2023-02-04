@@ -27,4 +27,6 @@ public static class Logger
         public static void LogWarning(string message) => Log(LogLevel.Warning, message);
 
         public static void LogError(string message) => Log(LogLevel.Error, message);
+        
+        public static void LogError(Exception exception) => Log(LogLevel.Error, exception.ToString());
     }

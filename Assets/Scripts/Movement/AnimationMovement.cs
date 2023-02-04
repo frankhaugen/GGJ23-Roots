@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,9 +24,16 @@ public class AnimationMovement : MonoBehaviour
         timer +=Time.deltaTime; 
         if (timer >= animationFrames)
         {
-            currentSprite = (currentSprite + 1) % animationSprites.Length; //next sprite in the array 
-            spriteRenderer.sprite = animationSprites[currentSprite]; //update sprite renderer with new sprite
-            timer = 0; //reset timer
+            try
+            {
+                spriteRenderer.sprite = animationSprites[currentSprite];
+                currentSprite++;
+                timer = 0f;
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e);
+            }
         }
     }
 }
