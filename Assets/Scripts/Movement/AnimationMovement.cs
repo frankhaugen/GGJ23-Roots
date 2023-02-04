@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AnimationMovement : MonoBehaviour
@@ -21,14 +20,23 @@ public class AnimationMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer +=Time.deltaTime; 
+        if (!animationSprites.Any()) return;
+
+        timer += Time.deltaTime; 
         if (timer >= animationFrames)
         {
+            
             try
             {
-                spriteRenderer.sprite = animationSprites[currentSprite];
-                currentSprite++;
-                timer = 0f;
+                currentSprite++; // add 1 to current sprite
+                if (currentSprite >= animationSprites.Length)
+                {
+                    currentSprite = 0;
+                }
+                
+                spriteRenderer.sprite = animationSprites[currentSprite]; //update sprite renderer with new sprite
+                
+                timer = 0; //reset timer
             }
             catch (Exception e)
             {
