@@ -22,26 +22,24 @@ public class AnimationMovement : MonoBehaviour
     {
         if (!animationSprites.Any()) return;
 
-        timer += Time.deltaTime; 
-        if (timer >= animationFrames)
+        timer += Time.deltaTime;
+        if (!(timer >= animationFrames)) return;
+        
+        try
         {
-            
-            try
+            currentSprite++; // add 1 to current sprite
+            if (currentSprite >= animationSprites.Length)
             {
-                currentSprite++; // add 1 to current sprite
-                if (currentSprite >= animationSprites.Length)
-                {
-                    currentSprite = 0;
-                }
-                
-                spriteRenderer.sprite = animationSprites[currentSprite]; //update sprite renderer with new sprite
-                
-                timer = 0; //reset timer
+                currentSprite = 0;
             }
-            catch (Exception e)
-            {
-                Logger.LogError(e);
-            }
+                
+            spriteRenderer.sprite = animationSprites[currentSprite]; //update sprite renderer with new sprite
+                
+            timer = 0; //reset timer
+        }
+        catch (Exception e)
+        {
+            Logger.LogError(e);
         }
     }
 }
