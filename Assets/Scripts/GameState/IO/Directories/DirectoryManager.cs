@@ -1,20 +1,14 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class DirectoryManager : MonoBehaviour
+public static class DirectoryManager
 {
-    [SerializeField] private string rootDirectory;
+    public static string GetRootDirectoryPath() => Path.Combine(Application.dataPath, "GameFiles");
 
-    private void Start()
-    {
-        rootDirectory = Application.dataPath;
-        Debug.Log(rootDirectory);
-    }
-    
-    public IEnumerable<DirectoryInfo>   GetDirectories(DirectoryInfo directory) => directory.GetDirectories();
-    
-    public DirectoryInfo GetRootDirectory() => new DirectoryInfo(Path.GetPathRoot(Directory.GetCurrentDirectory()));
+    public static DirectoryInfo GetRootDirectory() => new DirectoryInfo(GetRootDirectoryPath());
+
+    public static IEnumerable<DirectoryInfo> GetDirectories(DirectoryInfo directory) => directory.GetDirectories("", SearchOption.AllDirectories);
+
+    public static IEnumerable<FileInfo> GetFiles() => GetRootDirectory().GetFiles("", SearchOption.AllDirectories);
 }

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
-    public new Rigidbody2D rigidbody {get; private set;}
+    public new Rigidbody2D rigidbody { get; private set; }
     private Vector2 direction = Vector2.down;
     public float speed = 5f;
 
@@ -13,28 +11,32 @@ public class MovementController : MonoBehaviour
     public KeyCode inputLeft = KeyCode.A;
     public KeyCode inputRight = KeyCode.D;
 
-    private void Awake() {
+    private void Awake()
+    {
         rigidbody = GetComponent<Rigidbody2D>();
     }
-    private void Update() 
+
+    private void Update()
     {
         if (Input.GetKey(inputUp))
         {
             SetDirection(Vector2.up);
-            
-        }else if (Input.GetKey(inputDown)){
+        }
+        else if (Input.GetKey(inputDown))
+        {
             SetDirection(Vector2.down);
-
-        }else if (Input.GetKey(inputRight)){
+        }
+        else if (Input.GetKey(inputRight))
+        {
             SetDirection(Vector2.right);
-
-        }else if (Input.GetKey(inputLeft))
+        }
+        else if (Input.GetKey(inputLeft))
         {
             SetDirection(Vector2.left);
         }
-        else{
+        else
+        {
             SetDirection(Vector2.zero);
-
         }
     }
 
@@ -43,13 +45,10 @@ public class MovementController : MonoBehaviour
         Vector2 position = rigidbody.position;
         Vector2 translation = direction * speed * Time.fixedDeltaTime;
         rigidbody.MovePosition(position + translation);
-
     }
 
     private void SetDirection(Vector2 newDirection)
     {
-            direction = newDirection;
+        direction = newDirection;
     }
-
-
 }

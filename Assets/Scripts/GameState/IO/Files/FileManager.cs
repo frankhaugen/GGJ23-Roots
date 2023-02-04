@@ -1,22 +1,44 @@
 ﻿using System.IO;
-using UnityEngine;
+using System.Text;
 
-public class FileManager : MonoBehaviour
+public static class FileManager
 {
-    private readonly FileReader _reader = new FileReader();
-    private readonly FileWriter _writer = new FileWriter();
+    public static void Write(FileInfo file, byte[] bytes) => FileWriter.Write(file, bytes);
 
-    public void Write(FileInfo file, byte[] bytes) => _writer.Write(file, bytes);
+    public static void Write(FileInfo file, string text)
+    {
+        var bytes = Encoding.UTF8.GetBytes(text);
+        FileWriter.Write(file, bytes);
+    }
 
-    public byte[] Read(FileInfo file) => _reader.Read(file);
+    public static void Write<T>(FileInfo file, T obj)
+    {
+        var text = SerializationUtility.Serialize(obj);
+        var bytes = Encoding.UTF8.GetBytes(text);
+        FileWriter.Write(file, bytes);
+    }
 
-    public void Move(FileInfo file, string newName) => file.MoveTo(newName);
+    public static byte[] Read(FileInfo file) => FileReader.Read(file);
 
-    public void Rename(FileInfo file, string newName) => file.MoveTo(newName);
+    public static string ReadText(FileInfo file)
+    {
+        var bytes = FileReader.Read(file);
+        return Encoding.UTF8.GetString(bytes);
+    }
 
-    public void Create(FileInfo file) => file.Create();
+    public static T Read<T>(FileInfo file)
+    {
+        var text = ReadText(file);
+        return SerializationUtility.Deserialize<T>(text);
+    }
 
-    public void Delete(FileInfo file) => file.Delete();
+    public static void Move(FileInfo file, string newName) => file.MoveTo(newName);
 
-    public void Copy(FileInfo file, string newName) => file.CopyTo(newName);
+    public static void Rename(FileInfo file, string newName) => file.MoveTo(newName);
+
+    public static void Create(FileInfo file) => file.Create();
+
+    public static void Delete(FileInfo file) => file.Delete();
+
+    public static void Copy(FileInfo file, string newName) => file.CopyTo(newName);
 }

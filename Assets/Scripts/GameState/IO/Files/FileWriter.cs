@@ -1,9 +1,8 @@
 ﻿using System.IO;
-using UnityEngine;
 
-public class FileWriter : MonoBehaviour
+public static class FileWriter
 {
-    public void Write(FileInfo file, byte[] bytes)
+    public static void Write(FileInfo file, byte[] bytes)
     {
         using var stream = file.OpenWrite();
         stream.Write(bytes, 0, bytes.Length);

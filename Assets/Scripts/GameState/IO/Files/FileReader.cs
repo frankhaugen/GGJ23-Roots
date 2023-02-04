@@ -1,9 +1,8 @@
 using System.IO;
-using UnityEngine;
 
-public class FileReader : MonoBehaviour
+public class FileReader
 {
-    public byte[] Read(FileInfo file)
+    public static byte[] Read(FileInfo file)
     {
         using var stream = file.OpenRead();
         var bytes = new byte[stream.Length];
