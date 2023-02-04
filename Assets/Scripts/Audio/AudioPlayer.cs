@@ -4,15 +4,16 @@ using UnityEngine;
 public class AudioPlayer : MonoBehaviour
 {
     public AudioSource Source;
-    
+
     public bool Fade;
-    
+
     void Start()
     {
         if (Source == null)
         {
             return;
         }
+
         if (Fade)
         {
             StartCoroutine(FadeIn());
@@ -29,6 +30,7 @@ public class AudioPlayer : MonoBehaviour
         {
             return;
         }
+
         if (Fade)
         {
             StartCoroutine(FadeOut());
@@ -45,7 +47,8 @@ public class AudioPlayer : MonoBehaviour
         {
             return;
         }
-        try 
+
+        try
         {
             StartCoroutine(FadeOut());
         }
@@ -55,24 +58,26 @@ public class AudioPlayer : MonoBehaviour
         }
     }
 
-    IEnumerator FadeIn() {
+    IEnumerator FadeIn()
+    {
         Source.volume = 0;
-        var speed = 0.01f;   
+        var speed = 0.01f;
         Source.Play();
-        
+
         for (float i = 0; i < 1; i += speed)
         {
             Source.volume = i;
             yield return new WaitForSeconds(0.2f);
         }
-        
+
         Source.loop = true;
         Source.Play();
     }
-        
-    IEnumerator FadeOut() {
+
+    IEnumerator FadeOut()
+    {
         Source.volume = 1;
-        var speed = 0.01f;   
+        var speed = 0.01f;
         Source.Stop();
         StopCoroutine(FadeIn());
         for (float i = 1; i > 0; i -= speed)
@@ -80,7 +85,7 @@ public class AudioPlayer : MonoBehaviour
             Source.volume = i;
             yield return new WaitForSeconds(0.2f);
         }
+
         Source.Stop();
     }
-
 }
