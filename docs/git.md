@@ -18,7 +18,7 @@
 
 ## Push change to remote
 
-> `git push`
+> `git push --set-upstream origin <branchname>`
 
 ## Checkout existing branch
 
