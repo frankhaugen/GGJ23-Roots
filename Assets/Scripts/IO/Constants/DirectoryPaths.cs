@@ -3,7 +3,9 @@ using UnityEngine;
 
 public static class DirectoryPaths
 {
-    public static readonly string GameFiles = Path.Combine(Application.dataPath, DirectoryNames.GameFiles);
+    public static readonly string AssetFiles = Application.dataPath;
+    
+    public static readonly string GameFiles = Path.Combine(new DirectoryInfo(AssetFiles).Parent.FullName, DirectoryNames.GameFiles);
 
     public static readonly string Saves = Path.Combine(GameFiles, DirectoryNames.Saves);
 
