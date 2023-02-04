@@ -9,7 +9,7 @@ public class InitializeGame
         InitializeDirectories();
         InitializeGameSettings();
         
-        Debug.Log("Game Initialized");
+        Logger.LogInfo("Game Initialized");
     }
     
     public static void InitializeDirectories()
