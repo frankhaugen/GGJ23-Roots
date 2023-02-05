@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
@@ -6,7 +7,11 @@ public class MovementController : MonoBehaviour
     private Vector2 direction = Vector2.down;
     public float speed = 5f;
 
-
+    [SerializeField] private GameObject bomb;
+    public int bombs = 1;
+    public int maxBombs = 10;
+    public KeyCode inputLayBomb = KeyCode.Space;
+    
     public KeyCode inputUp = KeyCode.W;
     public KeyCode inputDown = KeyCode.S;
     public KeyCode inputLeft = KeyCode.A;
@@ -16,9 +21,7 @@ public class MovementController : MonoBehaviour
     public AnimationMovement animationDown;
     public AnimationMovement animationLeft;
     public AnimationMovement animationRight;
-
-
-
+    
     private AnimationMovement activeSprite;
 
     private void Awake()
@@ -27,8 +30,24 @@ public class MovementController : MonoBehaviour
         activeSprite = animationDown;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Bomb")
+        {
+            Destroy(collision.gameObject);
+            bombs++;
+        }
+    }
+
     private void Update()
     {
+        if (Input.GetKey(inputLayBomb) && bombs > 0)
+        {
+            var layedBomb = Instantiate(bomb, transform.position, Quaternion.identity);
+            layedBomb.name = "Bomb_armed";
+            bombs--;
+        }
+        
         if (Input.GetKey(inputUp))
         {
             SetDirection(Vector2.up, animationUp);
@@ -48,7 +67,6 @@ public class MovementController : MonoBehaviour
         else
         {
             SetDirection(Vector2.zero, activeSprite);
-            
         }
     }
 
