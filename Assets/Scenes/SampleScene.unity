@@ -327,7 +327,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -1472137073, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  m_Sprite: {fileID: -2034688712, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -345,16 +345,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580582150}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f50d6b63ff89f482aa3fc386bd1f50c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animationSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -1523327868, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: 1489755450, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: -2034688712, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: -1330444821, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  idle: {fileID: 1489755450, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  isIdle: 1
+  loop: 1
 --- !u!1 &647853845
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +395,10 @@ MonoBehaviour:
   inputDown: 115
   inputLeft: 97
   inputRight: 100
+  animationUp: {fileID: 1878136226}
+  animationDown: {fileID: 580582153}
+  animationLeft: {fileID: 798103008}
+  animationRight: {fileID: 726271924}
 --- !u!58 &647853847
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -535,7 +542,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -34242938, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  m_Sprite: {fileID: 2055126728, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -553,12 +560,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726271921}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f50d6b63ff89f482aa3fc386bd1f50c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSprites: []
+  animationSprites:
+  - {fileID: 442664276, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: -299573507, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: 1367759122, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: -1227961022, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  idle: {fileID: 442664276, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  isIdle: 1
+  loop: 1
 --- !u!1 &729621472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,7 +1128,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 27578477, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  m_Sprite: {fileID: 781623184, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1132,12 +1146,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798103005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f50d6b63ff89f482aa3fc386bd1f50c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSprites: []
+  animationSprites:
+  - {fileID: -452259676, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: 678177460, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: 89462362, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: 964905109, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  idle: {fileID: -452259676, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  isIdle: 1
+  loop: 1
 --- !u!1 &1581952834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3941,7 +3962,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 2002361719, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  m_Sprite: {fileID: -472301492, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3965,7 +3986,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSprites:
-  - {fileID: 2098640025, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
-  - {fileID: 565274290, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
-  - {fileID: -1672729400, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
-  - {fileID: 1077736730, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  - {fileID: -247976893, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: 1539914963, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: -472301492, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  - {fileID: -866669083, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  idle: {fileID: 1539914963, guid: 9b71450c9077f894ea3a526a180582e8, type: 3}
+  isIdle: 1
+  loop: 1

@@ -6,40 +6,50 @@ public class AnimationMovement : MonoBehaviour
 {
     public Sprite[] animationSprites;
     private SpriteRenderer spriteRenderer;
-    private int currentSprite = 0;
-    private float animationFrames=0.25f;
-    private float timer = 0f;  
 
 
-    // Start is called before the first frame update
-    void Start()
+    public Sprite idle;
+    //private int currentSprite = 0;
+    private float animationTime=0.25f;
+    private int animationFrames;
+
+    public bool isIdle = true;
+    public bool loop = true;
+
+
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>(); //get reference to the sprite renderer component
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!animationSprites.Any()) return;
+    private void OnEnable() {
 
-        timer += Time.deltaTime;
-        if (!(timer >= animationFrames)) return;
+        spriteRenderer.enabled = true;
+
+    }
+
+    private void OnDisable() {
+        spriteRenderer.enabled = false;
         
-        try
-        {
-            currentSprite++; // add 1 to current sprite
-            if (currentSprite >= animationSprites.Length)
-            {
-                currentSprite = 0;
-            }
-                
-            spriteRenderer.sprite = animationSprites[currentSprite]; //update sprite renderer with new sprite
-                
-            timer = 0; //reset timer
+    }
+    private void Start()
+    {
+        InvokeRepeating(nameof(NextFrame), animationTime, animationTime);
+
+    }
+
+    //update the sprite renderer with the next sprite in the array
+    void NextFrame()
+    {
+        animationFrames ++;
+        if (loop && animationFrames >= animationSprites.Length) {
+            animationFrames = 0;
         }
-        catch (Exception e)
-        {
-            Logger.LogError(e);
+
+        if (isIdle) {
+            spriteRenderer.sprite = idle;
+        } else if (animationFrames >= 0 && animationFrames < animationSprites.Length) {
+            spriteRenderer.sprite = animationSprites[animationFrames];
         }
     }
 }
