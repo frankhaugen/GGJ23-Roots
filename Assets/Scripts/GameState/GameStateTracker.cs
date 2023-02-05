@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEngine;
 
     public static class GameStateTracker
@@ -18,5 +20,21 @@ using UnityEngine;
             {
                 _players.Add(playerInfo.Name, playerInfo);
             }
+        }
+        
+        public static void SaveState(string name)
+        {
+            var gameObject = GameObject.Find(name);
+            
+            if (gameObject == null)
+            {
+                Logger.LogError($"Could not find game object with name {name}");
+                return;
+            }
+            
+            var playerInfo = gameObject.ToPlayerInfo();
+            var filename = Path.GetInvalidFileNameChars().Aggregate(name.ToLower(), (current, invalidFileNameChar) => current.Replace(invalidFileNameChar, '_'));
+            var file = new FileInfo(Path.Combine(Directories.Autosaves.FullName, $"{filename}.json"));
+            FileManager.Write(file, playerInfo);
         }
     }
