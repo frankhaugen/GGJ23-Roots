@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{c8edb663-6a92-4283-8727-2e18a823a48d}">
+		<property name="assetPath">
+			<value>Pluck 4.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.5294166666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{58ac118a-07b9-4d4e-9fe2-d169eb6b1246}</destination>
+		</relationship>
+	</object>
+</objects>
