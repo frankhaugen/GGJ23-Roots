@@ -417,9 +417,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: "../../../OneDrive/FMOD-prosjekter/GGJ Fors\xF8k 3/GGJ Fors\xF8k
-    3.fspro"
-  sourceBankPath: "../../../OneDrive/FMOD-prosjekter/GGJ Fors\xF8k 3/Build"
+  sourceProjectPath: Assets/Audio/FMOD/GGJ Roots.fspro
+  sourceBankPath: Assets/Audio/FMOD/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
