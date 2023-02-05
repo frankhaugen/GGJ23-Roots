@@ -1,40 +1,93 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using UnityEngine;
 
     public static class GameStateTracker
     {
-        private static readonly Dictionary<string, PlayerInfo> _players = new Dictionary<string, PlayerInfo>(new InvariantCaselessStringComparer());
+        private static readonly Dictionary<string, GameObject> _gameObjects = new(new InvariantCaselessStringComparer());
         
         public static void SaveGameObjectState(GameObject gameObject)
         {
-            var playerInfo = gameObject.ToPlayerInfo();
-            
-            if (_players.ContainsKey(playerInfo.Name))
+            if (_gameObjects.ContainsKey(gameObject.name))
             {
-                _players[playerInfo.Name] = playerInfo;
+                _gameObjects[gameObject.name] = gameObject;
             }
             else
             {
-                _players.Add(playerInfo.Name, playerInfo);
+                _gameObjects.Add(gameObject.name, gameObject);
+            }
+        }
+
+        public static void WriteStateToDisk(string name)
+        {
+            if (_gameObjects.ContainsKey(name))
+            {
+                var gameObject = _gameObjects[name];
+                FileManager.Write(gameObject.GetAutoSaveFile(), gameObject.ToGameObjectInfo());
             }
         }
         
-        public static void SaveState(string name)
+        public static bool TryLoadStateFromDiskDirect(GameObject gameObject)
         {
-            var gameObject = GameObject.Find(name);
+            var saveFile = gameObject.GetAutoSaveFile();
             
-            if (gameObject == null)
+            if (saveFile.Exists)
             {
-                Logger.LogError($"Could not find game object with name {name}");
-                return;
+                var gameObjectInfo = FileManager.Read<GameObjectInfo>(saveFile);
+
+                if (gameObjectInfo != null)
+                {
+                    gameObject.SetState(gameObjectInfo);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Writes the state of a game object to disk without saving it to the dictionary
+        /// </summary>
+        /// <remarks>USE CAREFULLY</remarks>
+        /// <param name="gameObject"></param>
+        public static void WriteStateToDiskDirect(GameObject gameObject) => FileManager.Write(gameObject.GetAutoSaveFile(), gameObject.ToGameObjectInfo());
+
+        public static void WriteStatesToDisk()
+        {
+            if (_gameObjects.Count>0)
+            {
+                foreach (var obj in _gameObjects.Values)
+                {
+                    try
+                    {
+                        FileManager.Write(obj.GetAutoSaveFile(), obj.ToGameObjectInfo());
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.LogError(e);
+                    }
+                }
+            }
+        }
+        
+        public static void LoadState(GameObject gameObject)
+        {
+            var saveFile = gameObject.GetAutoSaveFile();
             
-            var playerInfo = gameObject.ToPlayerInfo();
-            var filename = Path.GetInvalidFileNameChars().Aggregate(name.ToLower(), (current, invalidFileNameChar) => current.Replace(invalidFileNameChar, '_'));
-            var file = new FileInfo(Path.Combine(Directories.Autosaves.FullName, $"{filename}.json"));
-            FileManager.Write(file, playerInfo);
+            if (saveFile.Exists)
+            {
+                var gameObjectInfo = FileManager.Read<GameObjectInfo>(saveFile);
+
+                if (gameObjectInfo != null)
+                {
+                    gameObject.SetState(gameObjectInfo);
+                }
+            }
         }
     }

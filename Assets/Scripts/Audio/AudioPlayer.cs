@@ -7,6 +7,12 @@ public class AudioPlayer : MonoBehaviour
 
     public bool Fade;
 
+    public void Play()
+    {
+        if (Source == null) return;
+        Source.Play();
+    }
+    
     void Start()
     {
         if (Source == null)
@@ -43,7 +49,7 @@ public class AudioPlayer : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (Source == null)
+        if (Source == null || !enabled)
         {
             return;
         }

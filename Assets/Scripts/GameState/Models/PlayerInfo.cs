@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 
-public class PlayerInfo : EntityBase
+public class GameObjectInfo
 {
     public string Name { get; set; }    
 
     public Position Position { get; set; }
+
+    public Rotation Rotation { get; set; }
     
-    public int Health { get; set; }
-    
-    public int MaxHealth { get; set; }
-    
-    public int Level { get; set; }
 }

@@ -1,11 +1,14 @@
 ﻿
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InitializeGame
 {
     [RuntimeInitializeOnLoadMethod]
     public static void InitializeFiles()
     {
+        
         InitializeDirectories();
         InitializeGameSettings();
         

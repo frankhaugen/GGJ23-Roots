@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class GameObjectStateSaver : MonoBehaviour
 {
-    [SerializeField] private bool _saveStateOnFixedUpdate = true;
-    private float counter = 0;
-    private float autosaveCycleTime = 5;
+    [SerializeField] public bool _saveStateOnFixedUpdate = true;
+    
+    [SerializeField] public float autosaveCycleTime = 5;
+    
+    [SerializeField] private float counter = 0;
     
     private void FixedUpdate()
     {
@@ -14,7 +16,7 @@ public class GameObjectStateSaver : MonoBehaviour
 
             if (counter >= autosaveCycleTime)
             {
-                GameStateTracker.SaveState(gameObject.name);
+                GameStateTracker.WriteStateToDisk(gameObject.name);
                 counter = 0;
             }
             else
