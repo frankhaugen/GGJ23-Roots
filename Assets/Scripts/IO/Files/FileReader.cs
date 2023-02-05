@@ -1,12 +1,19 @@
+using System;
 using System.IO;
+using UnityEngine;
 
 public class FileReader
 {
-    public static byte[] Read(FileInfo file)
+    public static string Read(FileInfo file)
     {
-        using var stream = file.OpenRead();
-        var bytes = new byte[stream.Length];
-        stream.Read(bytes, 0, (int)stream.Length);
-        return bytes;
+        try
+        {
+            return File.ReadAllText(file.FullName);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+            return null;
+        }
     }
 }

@@ -1,47 +1,22 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading;
+using UnityEngine;
 
 public static class FileWriter
 {
     private static readonly ReaderWriterLock _locker = new ReaderWriterLock();
 
-    public static void Write(FileInfo file, byte[] bytes)
-    {
-        try
-        {
-            _locker.AcquireWriterLock(int.MaxValue);
-            using var stream = file.OpenWrite();
-            stream.Write(bytes, 0, bytes.Length);
-        }
-        finally
-        {
-            _locker.ReleaseWriterLock();
-        }
-    }
-    
     public static void Write(FileInfo file, string text)
     {
         try
         {
             _locker.AcquireWriterLock(int.MaxValue);
-
-            using var fileCreation = file.CreateText();
-            fileCreation.Write(text);
-            // File.WriteAllText(file.FullName, text);
+            File.WriteAllText(file.FullName, text);
         }
-        finally
+        catch (Exception e)
         {
-            _locker.ReleaseWriterLock();
-        }
-    }
-    
-    public static void Append(FileInfo file, byte[] bytes)
-    {
-        try
-        {
-            _locker.AcquireWriterLock(int.MaxValue);
-            using var stream = file.Open(FileMode.Append, FileAccess.Write);
-            stream.Write(bytes, 0, bytes.Length);
+            Debug.LogError(e);
         }
         finally
         {
@@ -54,7 +29,18 @@ public static class FileWriter
         try
         {
             _locker.AcquireWriterLock(int.MaxValue);
-            File.AppendAllText(file.FullName, text);
+            
+            if (!file.Exists)
+            {
+                File.WriteAllText(file.FullName, text + Environment.NewLine);
+                return;
+            }
+            
+            File.AppendAllText(file.FullName, text + Environment.NewLine);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
         }
         finally
         {

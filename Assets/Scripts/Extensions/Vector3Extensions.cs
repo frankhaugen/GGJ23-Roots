@@ -2,5 +2,5 @@
 
 public static class Vector3Extensions
 {
-    public static Position ToPosition(this Vector3 vector3) => new Position(vector3.x, vector3.y);
+    public static Position ToPosition(this Vector3 vector3) => new Position() { X = vector3.x, Y = vector3.y };
 }

@@ -20,8 +20,7 @@ public static class Logger
             };
 
             var json = string.Concat("\n", JsonConvert.SerializeObject(logEntry, Formatting.None));
-            var bytes = System.Text.Encoding.UTF8.GetBytes(json);
-            FileWriter.Append(_logFile, bytes);
+            FileWriter.Append(_logFile, json);
         }
         
         public static void LogInfo(string message) => Log(LogLevel.Info, message);
