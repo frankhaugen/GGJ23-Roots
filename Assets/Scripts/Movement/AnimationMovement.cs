@@ -11,9 +11,10 @@ public class AnimationMovement : MonoBehaviour
     public Sprite idle;
     //private int currentSprite = 0;
     private float animationTime=0.25f;
-    private float animationFrames;
+    private int animationFrames;
 
     public bool isIdle = true;
+    public bool loop = true;
 
 
     void Awake()
@@ -33,7 +34,7 @@ public class AnimationMovement : MonoBehaviour
     }
     private void Start()
     {
-        InvokeRepeating(nameof(UpdateNextSprite), 0, animationTime);
+        InvokeRepeating(nameof(NextFrame), animationTime, animationTime);
 
     }
 
@@ -41,16 +42,13 @@ public class AnimationMovement : MonoBehaviour
     void NextFrame()
     {
         animationFrames ++;
-        if (animationFrames >= animationSprites.Length)
-        {
+        if (loop && animationFrames >= animationSprites.Length) {
             animationFrames = 0;
         }
-        if (isIdle)
-        {
+
+        if (isIdle) {
             spriteRenderer.sprite = idle;
-        }
-        else
-        {
+        } else if (animationFrames >= 0 && animationFrames < animationSprites.Length) {
             spriteRenderer.sprite = animationSprites[animationFrames];
         }
     }

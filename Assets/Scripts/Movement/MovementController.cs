@@ -12,12 +12,14 @@ public class MovementController : MonoBehaviour
     public KeyCode inputLeft = KeyCode.A;
     public KeyCode inputRight = KeyCode.D;
 
-    public AnimationSpritesRenderer animationUp;
-    public AnimationSpritesRenderer animationDown;
-    public AnimationSpritesRenderer animationLeft;
-    public AnimationSpritesRenderer animationRight;
+    public AnimationMovement animationUp;
+    public AnimationMovement animationDown;
+    public AnimationMovement animationLeft;
+    public AnimationMovement animationRight;
 
-    private AnimationSpritesRenderer activeSprite;
+
+
+    private AnimationMovement activeSprite;
 
     private void Awake()
     {
@@ -57,7 +59,7 @@ public class MovementController : MonoBehaviour
         rigidbody.MovePosition(position + translation);
     }
 
-    private void SetDirection(Vector2 newDirection, AnimationSpritesRenderer spriteRenderer)
+    private void SetDirection(Vector2 newDirection, AnimationMovement spriteRenderer)
     {
         direction = newDirection;
         
@@ -68,7 +70,7 @@ public class MovementController : MonoBehaviour
         
 
         activeSprite = spriteRenderer;
-        activeSprite.idle = direction == Vector2.zero;
+        activeSprite.isIdle = direction == Vector2.zero;
 
     }
 }

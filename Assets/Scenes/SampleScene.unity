@@ -355,6 +355,9 @@ MonoBehaviour:
   - {fileID: 905598300, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
   - {fileID: -1472137073, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
   - {fileID: -1774087762, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  idle: {fileID: 2002361719, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  isIdle: 1
+  loop: 1
 --- !u!1 &647853845
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +394,10 @@ MonoBehaviour:
   inputDown: 115
   inputLeft: 97
   inputRight: 100
+  animationUp: {fileID: 1878136226}
+  animationDown: {fileID: 580582153}
+  animationLeft: {fileID: 798103008}
+  animationRight: {fileID: 726271924}
 --- !u!58 &647853847
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -549,6 +556,9 @@ MonoBehaviour:
   - {fileID: -41156040, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
   - {fileID: 419430716, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
   - {fileID: -1184884627, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  idle: {fileID: -34242938, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  isIdle: 1
+  loop: 1
 --- !u!1 &729621472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1142,9 @@ MonoBehaviour:
   - {fileID: -583904674, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
   - {fileID: 27578477, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
   - {fileID: -1099345848, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  idle: {fileID: -205621679, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  isIdle: 1
+  loop: 1
 --- !u!1 &1581952834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3963,3 +3976,6 @@ MonoBehaviour:
   - {fileID: 565274290, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
   - {fileID: -1672729400, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
   - {fileID: 1077736730, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  idle: {fileID: -1672729400, guid: b2b46ac6fe2ed4592a136cf554e55e85, type: 3}
+  isIdle: 1
+  loop: 1
