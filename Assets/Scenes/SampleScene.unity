@@ -2594,10 +2594,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  bomb: {fileID: 2439338235400841269, guid: bf5cbed6d264749e5ab17ac7107bd7fb, type: 3}
-  bombs: 1
-  maxBombs: 10
-  inputLayBomb: 32
   inputUp: 119
   inputDown: 115
   inputLeft: 97
@@ -2689,8 +2685,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ad34ebcbbd04773bcc8f1c11cac02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombPrefab: {fileID: 2439338235400841269, guid: bf5cbed6d264749e5ab17ac7107bd7fb, type: 3}
-  maxBombs: 3
+  bomb: {fileID: 2439338235400841269, guid: bf5cbed6d264749e5ab17ac7107bd7fb, type: 3}
+  bombs: 1
+  maxBombs: 10
+  inputDropBomb: 32
 --- !u!114 &647853852
 MonoBehaviour:
   m_ObjectHideFlags: 0
