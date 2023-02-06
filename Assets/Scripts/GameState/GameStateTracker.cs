@@ -51,13 +51,6 @@ using UnityEngine;
             }
         }
 
-        /// <summary>
-        /// Writes the state of a game object to disk without saving it to the dictionary
-        /// </summary>
-        /// <remarks>USE CAREFULLY</remarks>
-        /// <param name="gameObject"></param>
-        public static void WriteStateToDiskDirect(GameObject gameObject) => FileManager.Write(gameObject.GetAutoSaveFile(), gameObject.ToGameObjectInfo());
-
         public static void WriteStatesToDisk()
         {
             if (_gameObjects.Count>0)
@@ -70,7 +63,7 @@ using UnityEngine;
                     }
                     catch (Exception e)
                     {
-                        Logger.LogError(e);
+                        Debug.LogException(e);
                     }
                 }
             }

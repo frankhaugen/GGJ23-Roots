@@ -36,7 +36,6 @@ public class AudioPlayer : MonoBehaviour
         {
             return;
         }
-
         if (Fade)
         {
             StartCoroutine(FadeOut());
