@@ -8,7 +8,6 @@ public class InitializeGame
     [RuntimeInitializeOnLoadMethod]
     public static void InitializeFiles()
     {
-        
         InitializeDirectories();
         InitializeGameSettings();
         

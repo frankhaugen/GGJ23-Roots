@@ -16,7 +16,7 @@ public static class FileWriter
         }
         catch (Exception e)
         {
-            Debug.LogError(e);
+            Debug.LogException(e);
         }
         finally
         {
@@ -33,14 +33,15 @@ public static class FileWriter
             if (!file.Exists)
             {
                 File.WriteAllText(file.FullName, text + Environment.NewLine);
-                return;
             }
-            
-            File.AppendAllText(file.FullName, text + Environment.NewLine);
+            else
+            {
+                File.AppendAllText(file.FullName, text + Environment.NewLine);
+            }
         }
         catch (Exception e)
         {
-            Debug.LogError(e);
+            Debug.LogException(e);
         }
         finally
         {
